@@ -8,12 +8,11 @@
 <h1>Лента записей</h1>                        
 {% for post in posts|dictsortreversed:"id" %}
 <hr>
-  {% include "includes/post_card.html" %}
   {% if request.resolver_match.view_name == 'blog:index' %}
     <p>{{ post.text|truncatewords:10 }}</p>
     <a href="{% url 'blog:post_detail' post.id %}"> Читать полный текст</a>
   {% else %}
-    <p>{{ post.text|linebreaks }}</p>
+    {% include "includes/post_card.html" %}
   {% endif %}
 {% endfor %}
 {% endblock %}
